@@ -1,0 +1,51 @@
+---
+title: "2020-05-01"
+author: "林茂廷"
+date: "5/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## EMajor bi-weekly chart
+
+idea: 
+https://jamboard.google.com/d/1hY7idRW9I99yZhmbuNMeTzKpYeEThQnOw5gDLy_D2Co/viewer
+
+* refresh your plotting skill:
+
+  - pick any data and graph one graph.
+  
+* drake
+
+傳統
+```{r}
+library(readr); library(dplyr); library(lubridate); library(drake)
+dataExample <- read_csv("https://apiservice.mol.gov.tw/OdService/download/A17000000J-020067-bVl")
+
+
+```
+
+```{r}
+dataExample = {
+  dataExample %>%
+  mutate(
+    受僱員工人數=as.numeric(受僱員工人數)
+  )
+  }
+
+```
+
+```{r}
+library(ggplot2)
+
+plot1={dataExample %>%
+  ggplot()+
+  geom_col(
+    aes(x=職類別, y=受僱員工人數)
+  )}
+```
+
+
